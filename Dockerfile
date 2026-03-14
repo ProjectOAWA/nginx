@@ -1,5 +1,9 @@
 FROM iangelo/nginx
 
+USER root
+RUN apk add --no-cache gettext
+USER nginx
+
 # Building this image requires baking docker with docker.hcl in parent repo
 COPY --chown=nginx:nginx --from=frontend-base /app/build /usr/share/nginx/html
 COPY --chown=nginx:nginx src /etc/nginx
