@@ -8,7 +8,8 @@ USER nginx
 COPY --chown=nginx:nginx --from=frontend-base /app/build /usr/share/nginx/html
 COPY --chown=nginx:nginx src /etc/nginx
 
+# Embed environment variables
 COPY --chmod=755 docker-entrypoint.sh /docker-entrypoint.sh
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
 CMD ["nginx", "-g", "daemon off;"]
